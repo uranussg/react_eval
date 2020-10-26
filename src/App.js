@@ -1,55 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Link, Route } from "react-router-dom";
+import User from "./components/User";
+import Header from "./components/Header";
+import Following from "./components/Following";
+import { Provider } from "react-redux";
 
-import { getUser, getFollwing } from "./utils/api_util";
-
-const User = (props) => {
-  const { user } = props;
-  const [data, setData] = useState("");
-  // useEffect(() => {
-  //   getUser(user).then((data) => setData(data))
-  //   .catch(error => setData(error));
-
-  // });
-  return <div></div>;
-};
-
-const Following = (props) => {
-  return <div>Following</div>;
-};
-
-export default function App() {
-  const [user, setUser] = useState("");
-  const UserContext = React.createContext([user, setUser]);
+export default function App({ store }) {
+  // const [user, setUser] = useState("");
+  // const UserContext = React.createContext([user, setUser]);
   return (
-    <UserContext.Provider value={[user, setUser]}>
-      <div>{user}</div>
+    <Provider store={store}>
+      <h1>Hi</h1>
       <BrowserRouter>
-        <Route
-          path="/"
-          component={() => <Header user={user} setUser={setUser} />}
-        />
-        <Route
-          exact
-          path="/following"
-          component={() => <Following user={user} />}
-        />
-        <Route exact path="/user" component={() => <User user={user} />} />
+        <Route path="/" component={Header} />
+        <Route exact path="/following" component={Following} />
+        <Route exact path="/user" component={User} />
       </BrowserRouter>
-    </UserContext.Provider>
+    </Provider>
   );
 }
-
-const Header = (props) => {
-  const { user, setUser } = props;
-  return (
-    <div>
-      <Link to="/user">User </Link>
-      <Link to="/following">following </Link>
-      <input value={user} onChange={(e) => setUser(e.target.value)} />
-      {/* <button onClick={handleSubmit}>search</button> */}
-    </div>
-  );
-};
 
 //<Spinner/> <DataTable>
