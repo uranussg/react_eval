@@ -4,5 +4,5 @@ import followingReducer from "./following_reducer";
 
 export default combineReducers({
   user: userReducer,
-  following: followingReducer
+  followings: followingReducer
 });

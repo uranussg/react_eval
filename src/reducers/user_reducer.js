@@ -5,7 +5,7 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_USER:
-      newState = action.user;
+      newState = action.user.data;
       return newState;
     default:
       return state;

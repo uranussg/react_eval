@@ -13,8 +13,10 @@ export default function App({ store }) {
       <h1>Hi</h1>
       <BrowserRouter>
         <Route path="/" component={Header} />
-        <Route exact path="/following" component={Following} />
-        <Route exact path="/user" component={User} />
+        <Switch>
+          <Route exact path="/" component={User} />
+          <Route exact path="/following" component={Following} />
+        </Switch>
       </BrowserRouter>
     </Provider>
   );
