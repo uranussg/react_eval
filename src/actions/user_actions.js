@@ -20,6 +20,7 @@ export const receiveNewFollowings = (follwings) => ({
 });
 
 export const fetchUser = (user) => (dispatch) => {
+  console.log(user);
   return APIUtil.getUser(user).then((user) => dispatch(receiveUser(user)));
 };
 

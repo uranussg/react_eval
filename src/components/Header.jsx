@@ -4,12 +4,14 @@ import { connect } from "react-redux";
 import { fetchUser } from "../actions/user_actions";
 
 const Header = (props) => {
-  const [user, setUser] = useState(props.username);
+  const [user, setUser] = useState(props.user || "");
   const handleSubmit = () => {
-    props.fetchUser(user).then(this.props.match.history.push("/user"));
+    props.fetchUser(user);
+    // .then(props.match.history.push("/user"));
   };
   return (
     <div>
+      <div>{Object.keys(props)}</div>
       <Link to="/user">User </Link>
       <Link to="/following">following </Link>
       <input value={user} onChange={(e) => setUser(e.target.value)} />
@@ -20,7 +22,7 @@ const Header = (props) => {
 
 const ms = (state) => {
   return {
-    username: state.user.username
+    user: state.user.data
   };
 };
 

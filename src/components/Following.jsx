@@ -22,7 +22,7 @@ const Following = (props) => {
 
 const ms = (state) => {
   return {
-    user: state.user.username,
+    user: state.user,
     followings: state.follwings
   };
 };
